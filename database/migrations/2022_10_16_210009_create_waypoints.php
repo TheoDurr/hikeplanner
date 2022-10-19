@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('path', function (Blueprint $table) {
+        Schema::create('waypoints', function (Blueprint $table) {
             $table->id();
-            $table->string('label', 255);
-            $table->char('user_uuid');
-            $table->foreign('user_uuid')->references('uuid')->on('user');
+            $table->unsignedBigInteger('path_id');
+            $table->decimal('latitude', 8, 6);
+            $table->decimal('longitude', 9, 6);
+            $table->unsignedTinyInteger('index');
+            $table->foreign('path_id')->references('id')->on('paths');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('path');
+        Schema::dropIfExists('waypoint');
     }
 };
