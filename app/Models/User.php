@@ -2,22 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthContract;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthContract;
+use Illuminate\Contracts\Auth\CanResetPassword as ResetPasswordContract;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use \Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Notifications\Notifiable;
+use \Illuminate\Auth\MustVerifyEmail;
 
 
-class User extends Model implements AuthContract
+class User extends Model implements AuthContract, ResetPasswordContract, MustVerifyEmailContract
 {
     use Authenticatable;
     use HasFactory;
     use HasUuids;
     use Authorizable;
     use CanResetPassword;
+    use Notifiable;
+    use MustVerifyEmail;
 
     protected $appends = [
         'name',
