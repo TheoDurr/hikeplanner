@@ -3,17 +3,14 @@
         Test Livewire
     </div>
 
-    <button class="hover:text-gray-300" wire:click="addUser">Add user</button>
-    <button class="hover:text-gray-300" wire:click="deleteUser">Delete user</button>
+    <button class="hover:text-gray-300" wire:click="add()">Add user</button>
+    <button class="hover:text-gray-300" wire:click="less()">Delete user</button>
 
 
-    <h3>Users list:</h3>
-    @foreach($users as $user)
-        <div class="rounded break-all bg-green-100 px-1 py-0.5">
-            uuid: {{$user->uuid}}<br>
-            username : {{$user->username}}<br>
-            email: {{$user->email}}<br>
-            password: {{$user->password}}
+    <h3>Numbers</h3>
+    @for ($i = 0; $i <= $count; $i++)
+        <div class="rounded break-all bg-green-100 px-1 py-0.5 mb-0.5">
+            The current value is {{ $i }}
         </div>
-    @endforeach
+    @endfor
 </div>
