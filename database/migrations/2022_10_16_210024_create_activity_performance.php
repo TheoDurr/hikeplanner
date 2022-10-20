@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('activity_id');
             $table->unsignedBigInteger('waypoint_id');
             $table->timestamp('reach_date');
-            $table->foreign('activity_id')->references('id')->on('activity');
-            $table->foreign('waypoint_id')->references('id')->on('waypoint');
+            $table->foreign('activity_id')->references('id')->on('activities');
+            $table->foreign('waypoint_id')->references('id')->on('waypoints');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('activity', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->char('user_uuid', 36);
             $table->unsignedBigInteger('path_id');
@@ -22,10 +22,10 @@ return new class extends Migration
             $table->unsignedBigInteger('weather_id');
             $table->timestamp('start_date');
             $table->timestamp('finish_date');
-            $table->text('comment');
+            $table->text('description');
             $table->decimal('temperature', 3, 1);
-            $table->foreign('user_uuid')->references('uuid')->on('user');
-            $table->foreign('path_id')->references('id')->on('path');
+            $table->foreign('user_uuid')->references('uuid')->on('users');
+            $table->foreign('path_id')->references('id')->on('paths');
             $table->foreign('type_id')->references('id')->on('activity_type');
             $table->foreign('difficulty_id')->references('id')->on('difficulty');
             $table->foreign('weather_id')->references('id')->on('weather');
