@@ -20,8 +20,18 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/paths', function() {
+        return view('paths');
+    })->name('paths');
+    Route::get('/activities', function () {
+        return view('activities');
+    })->name('activities');
+});
 
 require __DIR__.'/auth.php';
