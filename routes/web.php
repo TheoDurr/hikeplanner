@@ -29,9 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/paths', function() {
         return view('paths');
     })->name('paths');
-    Route::get('/activities', function () {
-        return view('activities');
-    })->name('activities');
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/activities.php';
