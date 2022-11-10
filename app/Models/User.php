@@ -46,4 +46,8 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
     public function setNameAttribute(string $name){
         $this->username = $name;
     }
+
+    public function activities() {
+        $this->hasMany(Activity::class, 'user_uuid', 'uuid');
+    }
 }

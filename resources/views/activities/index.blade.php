@@ -8,4 +8,13 @@
             </div>
         </div>
     </div>
+
+    {{--
+    @foreach (Auth::user()->activities() as $activity)
+        <div>
+        {{ $loop->index }}
+        </div>
+    @endforeach
+    --}}
+
 </x-app-layout>
