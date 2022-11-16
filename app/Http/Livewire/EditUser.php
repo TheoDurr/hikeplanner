@@ -54,9 +54,13 @@ class EditUser extends Component
 
     public function submit()
     {
-        $validatedData = $this->validate();
+        $this->validate();
 
-        $this->user->update($validatedData);
+        // Casting to lowercase because mutators does not work
+        $this->user->firstname = strtolower($this->user->firstname);
+        $this->user->lastname = strtolower($this->user->lastname);
+
+        $this->user->save();
         session()->flash('message', 'Your informations has been updated successfully.');
     }
 
