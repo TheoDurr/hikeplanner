@@ -5,8 +5,7 @@
                 <div class="p-4 flex justify-between w-full border-b border-gray-200">
                     <div class="bg-white my-auto">
                         <h1 class="text-xl font-semibold">{{ $user->getDisplayName() }}</h1>
-                        <span class="text-xs">{{ __("Followers") . " : " . $user->getFollowerCount() }}</span>
-                        <span class="text-xs">{{ __("Following") . " : " . $user->getFollowingCount() }}</span>
+                        <livewire:follow.user-profile-stats :user="$user" />
                     </div>
 
                     @if(Auth::user() != $user)

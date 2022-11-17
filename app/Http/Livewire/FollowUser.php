@@ -21,6 +21,7 @@ class FollowUser extends Component
 
     public function render()
     {
+        $this->emit('followStatsUpdated');
         return view('livewire.follow-user');
     }
 }
