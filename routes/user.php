@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/users')->group(function () {
+        Route::get('/', function () {
+            return view('users.list', ['users' => User::all()]);
+        })->name('users');
+
         Route::get('/me', function () {
             return redirect()->route('userProfile', ['user' => Auth::user()->uuid]);
         })->name('myProfile');
