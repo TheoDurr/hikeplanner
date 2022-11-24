@@ -39,9 +39,15 @@
                         <button
                             class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
 
-                            <div>{{ Auth::user()->getDisplayName() }}</div>
+                            <div>
+                                {{ Auth::user()->getDisplayName() }}
+                                @if(Auth::user()->isAdmin)
+                                    <br>
+                                    <span class="text-xs italic">(admin)</span>
+                                @endif
+                            </div>
 
-                            <div class="ml-1">
+                            <div class="ml-2">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -58,11 +64,19 @@
                             {{ __('My profile') }}
                         </x-dropdown-link>
 
+                        @if(Auth::user()->isAdmin())
+                            <!-- Admin zone -->
+                            <x-dropdown-link :href="route('admin')" class="font-semibold text-red-500">
+                                {{ __('Admin dashboard') }}
+                            </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
+                                             class="font-semibold"
                                              onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}

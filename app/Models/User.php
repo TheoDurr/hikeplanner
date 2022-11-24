@@ -49,6 +49,11 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
         $this->username = $name;
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->isAdmin === 1;
+    }
+
     public function getDisplayName()
     {
         if (!empty($this->firstname) && !empty($this->lastname)) {

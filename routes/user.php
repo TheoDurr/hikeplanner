@@ -28,6 +28,6 @@ Route::middleware('auth')->group(function () {
 
         Route::get('{user:uuid}/edit', function (User $user) {
             return view('user.edit', ['user' => $user]);
-        })->name('editProfile');
+        })->middleware('can:update,user')->name('editProfile');
     });
 });
