@@ -62,4 +62,49 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
     {
         $this->hasMany(Activity::class, 'user_uuid', 'uuid');
     }
+
+    public function follow(User $user)
+    {
+        $follow = new Follow();
+        $follow->follower = $this->uuid;
+        $follow->following = $user->uuid;
+
+        $follow->save();
+    }
+
+    public function unfollow(User $user)
+    {
+        $result = Follow::whereFollowerAndFollowing($this->uuid, $user->uuid);
+        $result?->delete();
+    }
+
+    public function isFollowedBy(User $user): bool
+    {
+        $result = Follow::where('follower', $this->uuid)->where('following', $user->uuid)->first();
+        if (isset($result)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isFollowing(User $user): bool
+    {
+        $result = Follow::where('follower', $this->uuid)->where('following', $user->uuid)->first();
+        if (isset($result)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getFollowerCount(): int
+    {
+        return Follow::where('following', $this->uuid)->count();
+    }
+
+    public function getFollowingCount(): int
+    {
+        return Follow::where('follower', $this->uuid)->count();
+    }
 }

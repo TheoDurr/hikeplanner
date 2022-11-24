@@ -1,11 +1,25 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @if(Route::is('myProfile'))
-                {{ __('My profile')  }}
-            @else
-                {{ $user->username . __('\'s profile') }}
-            @endif
-        </h2>
-    </x-slot>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-4 flex justify-between w-full border-b border-gray-200">
+                    <div class="bg-white my-auto">
+                        <h1 class="text-xl font-semibold">{{ $user->getDisplayName() }}</h1>
+                        <livewire:follow.user-profile-stats :user="$user" />
+                    </div>
+
+                    @if(Auth::user() != $user)
+                        <div class="bg-white">
+                            @livewire('follow-user', ['user' => $user])
+                        </div>
+                    @endif
+                </div>
+                <div class="p-6">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, assumenda dolore doloribus
+                    explicabo harum iste iure molestiae necessitatibus quibusdam unde vitae voluptatum! Exercitationem
+                    provident, quisquam! Accusantium asperiores consequuntur nobis officiis?
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
