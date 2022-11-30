@@ -34,8 +34,14 @@
                             <strong class="text-lg text-green-700">35</strong>
                         </div>
                         <div class="p-4 text-center">
-                            <h2 class="text-xl">Avg. length</h2>
-                            <strong class="text-lg text-green-700">2.5km</strong>
+                            <h2 class="text-xl">Level</h2>
+                            <strong class="text-lg text-green-700">
+                                @if(!$user->level)
+                                    N/A
+                                @else
+                                    {{ $user->level->label }}
+                                @endif
+                            </strong>
                         </div>
                     </div>
 

@@ -68,8 +68,14 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
         return $this->hasMany(Activity::class, 'user_uuid', 'uuid');
     }
 
-    public function paths() {
+    public function paths()
+    {
         return $this->hasMany(Path::class, 'user_uuid', 'uuid');
+    }
+
+    public function level()
+    {
+        return $this->hasOne(UserLevel::class, 'id', 'level_id');
     }
 
     public function follow(User $user)
