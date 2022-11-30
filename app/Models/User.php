@@ -71,7 +71,7 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
     public function getAvgActivityTime()
     {
         $activities = $this->activities;
-        if($activities){
+        if(sizeof($activities) != 0){
             $sum = 0.0;
             $count = 0;
             foreach ($activities as $activity){

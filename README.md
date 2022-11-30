@@ -21,7 +21,7 @@ composer install && npm install
 ```
 ### Base de données
 #### Connexion
-Maintenant que l'application est crée, il faut lui connecter la base de données. Cela se passe dans le fichier `.env`
+Maintenant que l'application est créée, il faut lui connecter la base de données. Cela se passe dans le fichier `.env`
 
 > Si ce fichier n'existe pas, vous pouvez copier le fichier `.env.example`
 
@@ -62,3 +62,13 @@ npm run dev
 
 php artisan serve
 ```
+
+
+### Se connecter avec un utilsateur de test
+
+Vous pouvez vous connecter avec cet utilisateur préconçu :
+
+login : eveillesimon@gmail.com<BR>
+mot de passe : testtest
+
+Vous pouvez aussi créer votre propre utilisateur (à condition d'avoir mis en place le serveur SMTP local).

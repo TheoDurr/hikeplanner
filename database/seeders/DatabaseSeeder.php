@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            WeatherSeeder::class,
             ActivityTypeSeeder::class,
             DifficultySeeder::class,
+            WeatherSeeder::class
             LevelSeeder::class,
 
             UserSeeder::class,

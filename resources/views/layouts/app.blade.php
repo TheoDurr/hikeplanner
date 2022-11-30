@@ -10,13 +10,14 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    {{ $head ?? '' }}<!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
-</head>
-<body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100">
-    @include('layouts.navigation')
+    {{ $head ?? '' }}
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
 
     <!-- Page Heading -->
     @if (isset($header))

@@ -5,7 +5,8 @@
                 <div class="flex justify-center align-middle bg-green-500">
                     <span class=" px-3 my-auto text-green-50 font-bold" >Search a name :</span>
                 </div>
-                <input wire:model="search" class="border-none flex-grow" type="text" placeholder="..."/>
+                <label for="search" class="hidden">Search</label>
+                <input id="search" wire:model="search" class="border-none flex-grow" type="text" placeholder="..."/>
             </div>
             <a class="flex justify-center items-center bg-green-500 hover:bg-green-700 text-white font-bold px-3 border border-gray-200 rounded-xl" href="{{ route('paths.create') }}">
                 <div class="h-fit">Add a path</div>
@@ -48,7 +49,18 @@
                             <button wire:click="edit({{ $path->id }})" class="hover:fill-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M4.25 15.75h1.229l7-7-1.229-1.229-7 7Zm11.938-8.208-3.73-3.73 1.021-1.02q.521-.521 1.24-.521t1.239.521l1.25 1.25q.5.5.5 1.239 0 .74-.5 1.24Zm-1.23 1.229L6.229 17.5H2.5v-3.729l8.729-8.729Zm-3.083-.625-.625-.625 1.229 1.229Z"/></svg>
                             </button>
-                            <button class="hover:fill-gray-400">
+                            <script>
+                                function askRemoval(id, authorized) {
+                                    if (!authorized) {
+                                        alert("You cannot remove this path: it is still used in some activities !");
+                                    } else {
+                                        if (confirm("Are you sure you want to delete the #" + id + " activity ?")) {
+                                            Livewire.emit('askedPathRemoval', id);
+                                        }
+                                    }
+                                }
+                            </script>
+                            <button class="hover:fill-gray-400" onclick="askRemoval({{$path->id}}, {{$path->activities->count() == 0}})">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M6.5 17q-.625 0-1.062-.438Q5 16.125 5 15.5v-10H4V4h4V3h4v1h4v1.5h-1v10q0 .625-.438 1.062Q14.125 17 13.5 17Zm7-11.5h-7v10h7ZM8 14h1.5V7H8Zm2.5 0H12V7h-1.5Zm-4-8.5v10Z"/></svg>
                             </button>
                         </div>
