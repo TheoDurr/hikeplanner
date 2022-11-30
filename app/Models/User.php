@@ -68,6 +68,22 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
         return $this->hasMany(Activity::class, 'user_uuid', 'uuid');
     }
 
+    public function getAvgActivityTime()
+    {
+        $activities = $this->activities;
+        if($activities){
+            $sum = 0.0;
+            $count = 0;
+            foreach ($activities as $activity){
+                $sum += $activity->duration();
+                $count++;
+            }
+            return $sum / $count;
+        } else {
+            return 0;
+        }
+    }
+
     public function paths()
     {
         return $this->hasMany(Path::class, 'user_uuid', 'uuid');

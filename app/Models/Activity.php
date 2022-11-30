@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Activity extends Model
 {
@@ -27,5 +28,11 @@ class Activity extends Model
     public function weather() {
         return $this->hasOne(Weather::class, 'id', 'weather_id');
 
+    }
+
+    public function duration() {
+        $start = Carbon::createFromTimeString($this->start_date);
+        $end = Carbon::createFromTimeString($this->finish_date);
+        return $end->floatDiffInHours($start);
     }
 }
