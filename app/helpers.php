@@ -42,3 +42,7 @@ function seed($model, $data, $schema) {
         $entity->save();
     }
 }
+
+function formatDuration(float $minutes){
+    return floor($minutes) . "h " . ($minutes - floor($minutes)) * 60 . "min";
+}

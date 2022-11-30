@@ -21,12 +21,15 @@ class EditUser extends Component
     {
         return [
             'user.firstname' => [
-                'alpha'
+                'nullable',
+                'string'
             ],
             'user.lastname' => [
-                'alpha'
+                'nullable',
+                'string'
             ],
             'user.birthdate' => [
+                'nullable',
                 'before:' . Date::today()
             ],
             'user.username' => [
@@ -61,7 +64,7 @@ class EditUser extends Component
         $this->user->lastname = strtolower($this->user->lastname);
 
         $this->user->save();
-        session()->flash('message', 'Your informations has been updated successfully.');
+        session()->flash('message-success', __("Your information has been updated successfully."));
     }
 
     public function render()

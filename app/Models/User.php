@@ -49,6 +49,11 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
         $this->username = $name;
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->isAdmin === 1;
+    }
+
     public function getDisplayName()
     {
         if (!empty($this->firstname) && !empty($this->lastname)) {
@@ -60,7 +65,33 @@ class User extends Model implements AuthContract, ResetPasswordContract, MustVer
 
     public function activities()
     {
-        $this->hasMany(Activity::class, 'user_uuid', 'uuid');
+        return $this->hasMany(Activity::class, 'user_uuid', 'uuid');
+    }
+
+    public function getAvgActivityTime()
+    {
+        $activities = $this->activities;
+        if($activities){
+            $sum = 0.0;
+            $count = 0;
+            foreach ($activities as $activity){
+                $sum += $activity->duration();
+                $count++;
+            }
+            return $sum / $count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function paths()
+    {
+        return $this->hasMany(Path::class, 'user_uuid', 'uuid');
+    }
+
+    public function level()
+    {
+        return $this->hasOne(UserLevel::class, 'id', 'level_id');
     }
 
     public function follow(User $user)
