@@ -102,13 +102,26 @@
 
         <div>
             <label>
-                Date :
-                <input type="date" wire:model="date"/>
+                Started on:
+                <input type="datetime-local" wire:model="start"/>
                 @error('date')
                 <span class="text-red-500 font-light">{{ $message }}</span>
                 @enderror
             </label>
         </div>
+
+        <div>
+            <label>
+                Finished on:
+                <input type="datetime-local" wire:model="finish"/>
+                @error('date')
+                <span class="text-red-500 font-light">{{ $message }}</span>
+                @enderror
+            </label>
+        </div>
+
+        {{$start}}
+
         <div>
             <button wire:click="save" class="px-2 py-1 rounded-xl font-bold text-white border border-gray-200 bg-green-500 hover:bg-green-700">Save</button>
         </div>

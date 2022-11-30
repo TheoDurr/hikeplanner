@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ActivityTypeSeeder::class,
             DifficultySeeder::class,
-            Weather::class
+            WeatherSeeder::class
         ]);
     }
 }

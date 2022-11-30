@@ -15,8 +15,8 @@ use Livewire\Component;
 class CreateActivity extends Component
 {
     public Activity $activity;
-    public $date;
-    public $time;
+    public $start;
+    public $finish;
 
     protected $rules = [
         'activity.type_id' => 'required',
@@ -25,7 +25,7 @@ class CreateActivity extends Component
         'activity.weather_id' => 'required',
         'activity.temperature' => 'required',
         'activity.description' => 'string',
-        'date' => 'date'
+        'start' => 'date_format:Y-m-d\\TH:i:s|required'
     ];
 
     protected $messages = [
@@ -41,10 +41,20 @@ class CreateActivity extends Component
         $this->activity->temperature = 20;
         $this->activity->description = "";
 
+
+        $this->start = Carbon::now()->subHour()->toDateTimeLocalString();
+        $this->finish = Carbon::now()->toDateTimeLocalString();
     }
 
     public function save() {
         $this->validate();
+        $this->activity->user_uuid = Auth::user()->uuid;
+        $this->activity->start_date = $this->start;
+        $this->activity->finish_date = $this->finish;
+
+
+        $this->activity->save();
+        redirect()->route('activities');
     }
 
     public function render()
