@@ -2,20 +2,20 @@
 
 namespace Database\Seeders;
 
-use App\Models\ActivityType;
+use App\Models\UserLevel;
 use Illuminate\Database\Seeder;
 
-class ActivityTypeSeeder extends Seeder
+class LevelSeeder extends Seeder
 {
-    private $model = ActivityType::class;
+    private $model = UserLevel::class;
     private $data = array(
-        ['Running'],
-        ['Walking'],
-        ['Biking'],
-        ['Cycling'],
+        ['Beginner'],
+        ['Intermediate'],
+        ['Advanced'],
+        ['Expert']
     );
-    private $schema = ['label'];
 
+    private $schema = ['label'];
 
     /**
      * Run the database seeds.
