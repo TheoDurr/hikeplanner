@@ -23,9 +23,29 @@
                     </div>
                 </div>
                 <div class="p-6">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, assumenda dolore doloribus
-                    explicabo harum iste iure molestiae necessitatibus quibusdam unde vitae voluptatum! Exercitationem
-                    provident, quisquam! Accusantium asperiores consequuntur nobis officiis?
+                    <h3 class="text-2xl text-gray-700 font-bold -ml-3">{{ __('Performances') }}</h3>
+                    <div class="w-full flex justify-evenly">
+                        <div class="p-4 text-center">
+                            <h2 class="text-xl">Activities</h2>
+                            <strong class="text-lg text-green-700">{{ $user->activities()->count() }}</strong>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h2 class="text-xl">Avg. duration</h2>
+                            <strong class="text-lg text-green-700">35</strong>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h2 class="text-xl">Avg. length</h2>
+                            <strong class="text-lg text-green-700">2.5km</strong>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl text-gray-700 font-bold mb-6 -ml-3">{{ __('Latest Activities') }}</h3>
+                    @if(empty($user->activities()->count()))
+                        No activities yet !
+                    @else
+                        @foreach($user->activities() as $activity)
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
