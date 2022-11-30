@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Weather;
 use Illuminate\Database\Seeder;
 use SebastianBergmann\Diff\Diff;
 
@@ -26,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ActivityTypeSeeder::class,
             DifficultySeeder::class,
-
+            Weather::class
         ]);
     }
 }

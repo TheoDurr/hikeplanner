@@ -4,27 +4,46 @@ namespace App\Http\Livewire;
 
 use App\Models\Path;
 use App\Models\Waypoint;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class CreatePath extends Component
+class EditPath extends Component
 {
+    public $pathId;
     public Path $path;
     public $waypoints;
 
     protected $listeners = ['waypointsChanged' => 'setWaypoints'];
 
-    public function setWaypoints($newWaypoints) {
-        $this->waypoints = $newWaypoints;
-    }
-
     protected $rules = [
         'path.label' => 'required|string|min:1',
     ];
 
+    public function setWaypoints($newWaypoints) {
+        $this->waypoints = $newWaypoints;
+    }
+
+    public function mount() {
+        $this->path = Path::find($this->pathId);
+        $this->waypoints = array();
+    }
+
+    public function generateJsPath() {
+        $result = "[";
+        foreach ($this->path->waypoints()->orderBy('index', 'asc')->get()
+                 as $waypoint) {
+            $result .= "L.latLng(". $waypoint->latitude .",". $waypoint->longitude ."),";
+        }
+        return substr($result, 0, -1) . "]";
+    }
+
     public function save() {
         $this->validate();
-        $this->path->user_uuid = Auth::user()->uuid;
+
+        if (sizeof($this->waypoints) > 0) {
+            foreach ($this->path->waypoints as $waypoint) {
+                $waypoint->delete();
+            }
+        }
 
         $this->path->save();
 
@@ -40,13 +59,8 @@ class CreatePath extends Component
         redirect()->route('paths');
     }
 
-    public function mount() {
-        $this->path = new Path();
-        $this->waypoints = array();
-    }
-
     public function render()
     {
-        return view('livewire.create-path');
+        return view('livewire.edit-path');
     }
 }

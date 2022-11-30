@@ -1,14 +1,20 @@
 <div>
     <div class="py-5 w-full flex justify-between">
         <span class="sm:px-6 lg:px-8 mt-5 text-xl">
-            Add your waypoints to create a path
+            Edit your path
         </span>
         <div class="sm:px-6 lg:px-8 mt-3">
-                <div class="flex justify-between rounded-xl border border-gray-200 overflow-hidden">
-                    <input wire:model="path.label" class="border-none flex-grow" type="text" placeholder="Path's name ..."/>
-                    <button wire:click="save" class="bg-green-500 px-3 text-green-50 font-bold hover:bg-green-700" >Save</button>
+            <div class="flex justify-between rounded-xl border border-gray-200 overflow-hidden">
+                <div class="flex justify-center align-middle bg-green-500">
+                    <span class=" px-3 my-auto text-green-50 font-bold" >Path's name :</span>
                 </div>
-                @error('path.label') <span class="ml-4 font-light text-red-500">{{ $message }}</span> @enderror
+                <input wire:model="path.label" class="border-none flex-grow" type="text" value="{{ $path->label }}"/>
+                <button wire:click="save" class="bg-green-500 px-3 text-white hover:bg-green-700">
+                    Save
+                </button>
+            </div>
+
+            @error('path.label') <span class="ml-4 font-light text-red-500">{{ $message }}</span> @enderror
         </div>
 
 
@@ -32,10 +38,7 @@
         }).addTo(map);
 
         L.Routing.control({
-            waypoints: [
-                L.latLng(47.6378, 6.862),
-                L.latLng(47.6426, 6.844)
-            ],
+            waypoints: {{ $this->generateJsPath() }},
             routeWhileDragging: true,
             watpointMode: 'smart',
             geocoder: L.Control.Geocoder.nominatim(),

@@ -14,4 +14,13 @@ class Path extends Model
     public function waypoints() {
         return $this->hasMany(Waypoint::class, 'path_id', 'id');
     }
+
+    public function activities() {
+        return $this->hasMany(Activity::class, 'path_id', 'id');
+    }
+
+    public function scopeSearch($query, $search_string) {
+        $search_string = "%".$search_string."%";
+        return $query->where('label', 'like', $search_string);
+    }
 }
