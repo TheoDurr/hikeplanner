@@ -8,6 +8,8 @@ use Livewire\Component;
 
 class IndexPaths extends Component
 {
+    protected $listeners = ['askedPathRemoval' => 'remove'];
+
     public $search;
     public $idSort;
     public $nameSort;
@@ -29,6 +31,18 @@ class IndexPaths extends Component
         $this->nameSort = null;
         $this->dateSort = 'desc';
         $this->orderBy = 'updated_at';
+    }
+
+    public function canIRemove($id) {
+        $path = Path::find($id);
+        if ($path == null) return false;
+        if ($path->activities()->count() > 0) return false;
+        return true;
+    }
+
+    public function remove($id) {
+        $path = Path::find($id);
+        $path->delete();
     }
 
     public function clickSortId() {
