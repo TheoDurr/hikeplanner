@@ -18,9 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('path_id');
             $table->decimal('latitude', 8, 6);
             $table->decimal('longitude', 9, 6);
-            $table->unsignedTinyInteger('index');
+            $table->unsignedMediumInteger('index');
             $table->foreign('path_id')->references('id')->on('paths');
-            $table->timestamps();
         });
     }
 

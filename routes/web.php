@@ -25,12 +25,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/paths', function () {
-        return view('paths');
-    })->name('paths');
 });
 
 require __DIR__ . '/auth.php';
-require __DIR__ . '/activities.php';
 require __DIR__ . '/user.php';
 require __DIR__ . '/admin.php';
+require __DIR__.  '/paths.php';
+require __DIR__ . '/activities.php';

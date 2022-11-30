@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="py-12 overflow-hidden">
         <div class="w-full h-[75vh] mx-auto sm:px-6 lg:px-8 grid grid-cols-3 grid-rows-2 gap-5">
-            <div class="overflow-hidden shadow-tile sm:rounded-lg hover:shadow-hovered-tile cursor-pointer">
+            <div class="overflow-hidden shadow-tile sm:rounded-lg hover:shadow-hovered-tile cursor-pointer border border-b border-gray-100 bg-white">
                 <div class="flex flex-col h-full w-full justify-center">
                     <span class="text-center text-2xl font-bold">Add an activity</span>
                     <span class="flex justify-center mt-5">
@@ -10,17 +10,17 @@
                     </span>
                 </div>
             </div>
-            <div class="overflow-hidden shadow-tile sm:rounded-lg">
+            <div class="overflow-hidden shadow-tile sm:rounded-lg border border-b border-gray-100 bg-white">
 
                     2
 
             </div>
-            <div class="row-span-2 overflow-hidden shadow-tile sm:rounded-lg">
+            <div class="row-span-2 overflow-hidden shadow-tile sm:rounded-lg border border-b border-gray-100 bg-white">
 
                     3
 
             </div>
-            <div class="col-span-2 overflow-hidden shadow-tile sm:rounded-lg">
+            <div class="col-span-2 overflow-hidden shadow-tile sm:rounded-lg border border-b border-gray-200 bg-white">
                 4
             </div>
         </div>
