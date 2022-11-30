@@ -44,5 +44,5 @@ function seed($model, $data, $schema) {
 }
 
 function formatDuration(float $minutes){
-    return floor($minutes) . "h " . ($minutes - floor($minutes)) * 60 . "min";
+    return floor($minutes) . "h " . intval(($minutes - floor($minutes)) * 60) . "min";
 }
