@@ -120,8 +120,6 @@
             </label>
         </div>
 
-        {{$start}}
-
         <div>
             <button wire:click="save" class="px-2 py-1 rounded-xl font-bold text-white border border-gray-200 bg-green-500 hover:bg-green-700">Save</button>
         </div>
